@@ -39,6 +39,8 @@ ARG RESTY_CONFIG_OPTIONS="\
     --with-stream \
     --with-stream_ssl_module \
     --with-threads \
+    --without-http_upstream_ip_hash_module  \
+     --http-proxy-temp-path=/var/tmp/nginx/proxy/ \
     "
 ARG RESTY_CONFIG_OPTIONS_MORE=""
 
@@ -87,7 +89,9 @@ RUN apk add --no-cache --virtual .build-deps \
         pcre-${RESTY_PCRE_VERSION}.tar.gz pcre-${RESTY_PCRE_VERSION} \
     && apk del .build-deps \
     && ln -sf /dev/stdout /usr/local/openresty/nginx/logs/access.log \
-    && ln -sf /dev/stderr /usr/local/openresty/nginx/logs/error.log
+    && ln -sf /dev/stderr /usr/local/openresty/nginx/logs/error.log \
+    && mkdir -p /var/tmp/nginx/proxy/ \
+    && chown -R www:www /var/tmp/nginx/proxy/
 
 # Add additional binaries into PATH for convenience
 ENV PATH=$PATH:/usr/local/openresty/luajit/bin/:/usr/local/openresty/nginx/sbin/:/usr/local/openresty/bin/
