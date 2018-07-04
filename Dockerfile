@@ -11,8 +11,6 @@ ARG RESTY_OPENSSL_VERSION="1.0.2k"
 ARG RESTY_PCRE_VERSION="8.41"
 ARG RESTY_J="1"
 ARG RESTY_CONFIG_OPTIONS="\
-    --user=nginx \
-    --group=nginx \
     --with-file-aio \
     --with-http_addition_module \
     --with-http_auth_request_module \
