@@ -91,7 +91,7 @@ RUN apk add --no-cache --virtual .build-deps \
     && ln -sf /dev/stdout /usr/local/openresty/nginx/logs/access.log \
     && ln -sf /dev/stderr /usr/local/openresty/nginx/logs/error.log \
     && mkdir -p /var/tmp/nginx/proxy/ \
-    && useradd -s /sbin/nologin -g nginx nginx
+    && useradd -s /sbin/nologin -g nginx nginx \
     && chown -R nginx:nginx /var/tmp/nginx/proxy/
 
 # Add additional binaries into PATH for convenience
